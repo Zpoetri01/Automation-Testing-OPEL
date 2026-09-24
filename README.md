@@ -15,7 +15,7 @@ menggunakan Appium, Python, dan Pytest dengan pola **Page Object Model**.
    `run_tests.bat 07`
 
 ### Kalau mau dari Android Studio (Device Manager)
-1. Buka **Device Manager** -> AVD **OPEL** -> klik ikon ✏️ (Edit)
+1. Buka **Device Manager** -> AVD **OPEL** -> klik ikon (Edit)
 2. **Graphics: Software - SwiftShader Indirect** (bukan Automatic)
 3. **Memory (RAM): 3072 MB**
 4. **Boot option: Cold boot** (matikan Quick boot)
