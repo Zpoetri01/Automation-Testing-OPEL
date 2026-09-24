@@ -3,7 +3,7 @@
 Automation testing untuk aplikasi mobile **OPEL** (`com.antam.opel.development`, APK 2.5.15),
 menggunakan Appium, Python, dan Pytest dengan pola **Page Object Model**.
 
-## ⚡ Cara Cepat (one click)
+## One Click
 
 1. Pastikan tidak ada emulator tersembunyi yang bentrok:
    `restart_emulator.bat` (kalau jendela emulator tidak muncul)
@@ -13,41 +13,6 @@ menggunakan Appium, Python, dan Pytest dengan pola **Page Object Model**.
    - otomatis: cek emulator (start kalau belum jalan) -> cek Appium -> pytest -> buka laporan
 3. Hanya satu menu, mis. Supply (debugging):
    `run_tests.bat 07`
-
-## 🖥️ Emulator (supaya muncul sendiri & tidak crash/putus)
-
-### Kenapa kemarin emulator "tidak ada" padahal jalan?
-Emulator lama di-start oleh Android Studio Device Manager dengan flag
-`-qt-hide-window` (mode tersembunyi) — prosesnya jalan (`adb devices` ada)
-tapi jendelanya tidak muncul. Kalau ini terjadi, jalankan **sekali**:
-
-```bat
-restart_emulator.bat
-```
-
-### Cara start emulator sendiri (jendela TERLIHAT, anti crash)
-
-```bat
-start_emulator.bat
-```
-
-Isi pentingnya (bisa juga diketik manual di cmd):
-
-```bat
-%LOCALAPPDATA%\Android\Sdk\emulator\emulator.exe -avd OPEL ^
-  -gpu swiftshader_indirect -no-snapshot-load -no-boot-anim -memory 3072 -cores 4
-```
-
-- `-avd OPEL` — nama AVD project ini (AVD `Medium_Phone` di script lama TIDAK ada)
-- `-gpu swiftshader_indirect` — render software, hindari crash driver GPU
-- `-no-snapshot-load` — jangan load snapshot (snapshot korup = penyebab umum crash/putus)
-- `-memory 3072` — RAM 3GB
-
-Cek status boot (tunggu sampai keluar `1`):
-
-```bat
-%LOCALAPPDATA%\Android\Sdk\platform-tools\adb.exe -s emulator-5554 shell getprop sys.boot_completed
-```
 
 ### Kalau mau dari Android Studio (Device Manager)
 1. Buka **Device Manager** -> AVD **OPEL** -> klik ikon ✏️ (Edit)
@@ -65,7 +30,7 @@ adb -s emulator-5554 shell settings put global transition_animation_scale 0
 adb -s emulator-5554 shell settings put global animator_duration_scale 0
 ```
 
-## Alur Testing (sesuai skenario user TERBARU 15 Sep 2026)
+## Alur Testing 
 
 1. **Login** — Masuk -> GOOGLE -> akun `poetri4y@gmail.com` -> Beranda
 2. **Beranda -> Apps** -> scroll ke **UBP BAUKSIT TAYAN**
@@ -160,13 +125,3 @@ opel-mobile-2/
 └── scans/                      # dump UI bukti locator (untuk verifikasi)
 ```
 
-## Catatan Teknis
-
-- Locator memakai `content-desc` sebagai prioritas utama (React Native app).
-- Tombol status di halaman Detail ada DUA level: per-unit (Excavator/
-  Dumptruck) dan GLOBAL di bar bawah (Standby kuning / Selesai merah) —
-  yang dipakai skenario adalah yang GLOBAL (match terakhir).
-- Semua langkah **defensif**: kalau elemen tidak ada (data/app beda versi),
-  langkah di-skip tanpa menggagalkan test. Cek log `-v` untuk melihat step
-  mana yang di-skip, lalu lengkapi locator via Appium Inspector + simpan
-  dump-nya di `scans/`.
