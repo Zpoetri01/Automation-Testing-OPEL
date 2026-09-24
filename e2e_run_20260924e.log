@@ -1,0 +1,114 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.2, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\user\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+metadata: {'Python': '3.13.2', 'Platform': 'Windows-11-10.0.26200-SP0', 'Packages': {'pytest': '9.1.1', 'pluggy': '1.6.0'}, 'Plugins': {'html': '4.2.0', 'metadata': '3.1.1', 'order': '1.5.0'}}
+rootdir: D:\Magang\ANTAM\opel-mobile-2
+configfile: pytest.ini
+plugins: html-4.2.0, metadata-3.1.1, order-1.5.0
+collecting ... collected 1 item
+
+tests/test_e2e_full_flow.py::test_e2e_opel_flow [HASIL] Login [berhasil]
+
+=== [3.1] Aktivitas Tambang ===
+[ALUR] 1) klik tombol tambah -> isi seluruh form dummy -> Simpan
+[DROPDOWN] ', Pilih shift' -> opsi pertama dipilih
+[DROPDOWN] ', Pilih jenis kegiatan' -> opsi pertama dipilih
+[DROPDOWN] ', Pilih pemeriksa' -> opsi pertama dipilih
+[DROPDOWN] ', Pilih plant' -> opsi pertama dipilih
+[DROPDOWN] ', Pilih lokasi' -> opsi pertama dipilih
+[FORM] 'Deskripsi Lokasi': OK LOKASI-H2AEM
+[FORM] 'Jarak (m)': OK 390
+[DROPDOWN] ', Pilih unit/alat' -> opsi pertama dipilih
+[ALUR] 2) di halaman Detail entry baru -> klik tombol TAMBAH besar -> modal 'Tambah Unit/Alat' -> pilih unit bebas
+[TAMBAH UNIT] unit dipilih bebas: 1PS01 - Excavator
+[TAMBAH UNIT] selesai, kembali ke Detail
+[ALUR] 3) buka entry teratas -> Lihat Log Pergerakan -> kembali
+[LOG PERGERAKAN] setelah back tidak di Detail -> buka ulang entry teratas
+[LIST] kandidat entry: 4 (pola '24 Sep 2026')
+[LIST] entry dibuka -> Detail (bisa dioperasikan)
+[LOG PERGERAKAN] dibuka lalu kembali ke Detail
+[ALUR] 4) tombol Standby kuning -> isi form dummy -> Simpan
+  [dump] scans/status_pre_fill_5
+[DROPDOWN] ', Pilih jenis standby' -> opsi pertama dipilih
+[DROPDOWN] ', Pilih alasan standby' -> opsi pertama dipilih
+[FORM] 'Deskripsi': OK TEST-218
+  [dump] scans/status_post_fill_5
+[STATUS] form status diisi dummy & disimpan
+[ALUR] 5) tombol Selesai merah -> konfirmasi Ya
+[SELESAI] entry diselesaikan (konfirmasi 'Ya')
+[ALUR] 6) klik Kembali -> filter rentang tanggal masa lampau
+[TANGGAL] rentang 22 Sep - 23 Sep dipilih: True
+[HASIL] 3.1 Aktivitas Tambang [selesai]
+
+=== [3.2] Ore Getting ===
+[ALUR] 1) tab Fleet -> klik tombol tambah -> isi seluruh form dummy -> Simpan
+[DROPDOWN] ', Pilih shift' -> opsi pertama dipilih
+[DROPDOWN] ', Pilih pemeriksa' -> opsi pertama dipilih
+[DROPDOWN] ', Pilih material' -> opsi pertama dipilih
+[DROPDOWN] ', Pilih plant' -> opsi pertama dipilih
+[DROPDOWN] ', Pilih asal' -> opsi pertama dipilih
+[DROPDOWN] ', Pilih tujuan' -> opsi pertama dipilih
+[FORM] 'Jarak (m)': OK 93
+[DROPDOWN] ', Pilih ekskavator' -> opsi pertama dipilih
+  [dump] scans/auto_dt_modal_open_6
+[DROPDOWN] ', Pilih dumptruck' -> opsi pertama dipilih
+[ALUR] 2) buka bagian Ore Getting yang baru dibuat/diisi
+[ALUR] 3) tombol Standby kuning -> isi form dummy -> Simpan
+  [dump] scans/status_pre_fill_6
+[DROPDOWN] ', Pilih jenis standby' -> opsi pertama dipilih
+[DROPDOWN] ', Pilih alasan standby' -> opsi pertama dipilih
+[FORM] 'Deskripsi': OK TEST-702
+  [dump] scans/status_post_fill_6
+[STATUS] form status diisi dummy & disimpan
+[ALUR] 4) bagian Dumptruck: isi Bucket DULU
+[BUCKET] Dumptruck: OK 21
+[ALUR] 5) klik Tambah Ritase -> muncul Tambah Kode Tumpukan -> OK
+[FORM] disimpan via tombol OK (ganti otomatis dari Simpan)
+[TUMPUKAN] kode tumpukan baru dibuat: TEST674676
+[RITASE] form ritase sudah tertutup (selesai via dialog OK)
+[ALUR] 6) klik tombol tambah -> pilih dumptruck bebas
+[DUMPTRUCK] tombol tambah dumptruck tidak ada -> SKIP + dump bukti
+  [dump] scans/auto_dumptruck_fail_2
+[ALUR] 7) klik Hapus pada salah satu dumptruck -> OK
+[HAPUS] tombol 'Hapus' tidak ada/disabled -> SKIP + dump bukti
+  [dump] scans/auto_hapus_fail_2
+[ALUR] 8) klik Kembali -> filter rentang tanggal masa lampau (lusa s/d kemarin)
+[TANGGAL] rentang 22 Sep - 23 Sep dipilih: True
+[ALUR] 9) tab Kelola Tumpukan -> item PALING ATAS -> klik Selesai
+[TUMPUKAN] tombol 'Selesai' tidak ada di tab Kelola Tumpukan -> dump bukti
+  [dump] scans/auto_tumpukan_fail_2
+[ALUR] 10) tab Fleet -> buka entry -> Selesai merah -> Ya
+[LIST] kandidat entry: 4 (pola '24 Sep 2026')
+[LIST] entry dibuka -> Detail (bisa dioperasikan)
+[SELESAI] entry diselesaikan (konfirmasi 'Ya')
+[HASIL] 3.2 Ore Getting [selesai]
+
+=== [3.3] Feeding WP ===
+[ALUR] 1) tab Fleet -> klik tombol tambah -> isi seluruh form dummy -> Simpan
+[DROPDOWN] ', Pilih shift' -> opsi pertama dipilih
+[DROPDOWN] ', Pilih jenis kegiatan' -> opsi pertama dipilih
+[DROPDOWN] ', Pilih pemeriksa' -> opsi pertama dipilih
+[DROPDOWN] ', Pilih material' -> opsi pertama dipilih
+[DROPDOWN] ', Pilih plant' -> opsi pertama dipilih
+[DROPDOWN] ', Pilih asal' -> opsi pertama dipilih
+[FORM] 'Jarak (m)': OK 144
+[DROPDOWN] ', Pilih ekskavator': modal nyasar -> tutup netral dulu
+[DROPDOWN] ', Pilih ekskavator' -> opsi pertama dipilih
+[DROPDOWN] ', Pilih kode tumpukan' -> opsi pertama dipilih
+  [dump] scans/auto_dt_modal_open_7
+[DROPDOWN] ', Pilih dumptruck' -> opsi pertama dipilih
+[ALUR] 2) buka bagian Feeding WP yang baru dibuat/diisi
+[ALUR] 3) klik '+ Tambah WP' (BUKAN tombol tambah bulat) -> pilih WP Operasi -> Simpan
+[DROPDOWN] 'WP' -> opsi pertama dipilih
+  [dump] scans/auto_dt_modal_open_8
+[DROPDOWN] 'Dumptruck' -> opsi pertama dipilih
+[TAMBAH WP] WP dipilih & disimpan
+[ALUR] 4) klik panah -> WP yang ditambahkan tampil di bawahnya
+[WP] panah ekspand WP tidak ditemukan -> SKIP
+[ALUR] 5) isi Bucket WP -> tambahkan tumpukan -> Simpan -> OK
+[BUCKET] field Bucket tidak ada (entry selesai?) -> SKIP + dump bukti
+  [dump] scans/auto_bucket_fail
+[TUMPUKAN] tombol 'Tambah Tumpukan'/'+ Tambah Kode Tumpukan' tidak ada -> SKIP
+[ALUR] 6) Kembali -> filter rentang tanggal masa lampau (lusa s/d kemarin)
+[TANGGAL] rentang 22 Sep - 23 Sep dipilih: True
+[ALUR] 7) tab Kelola WP -> item PALING ATAS -> pilih status yang tersedia (Operasi/Standby/Breakdown/Selesai) -> isi form sampai OK
